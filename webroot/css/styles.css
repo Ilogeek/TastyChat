@@ -1,0 +1,56 @@
+body {
+    padding : 20px;
+	font-family: 'Open Sans', sans-serif;
+    /*background-image: url('/files/hugo/bg.jpg');*/
+}
+
+#msg {
+    background: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid #c5c5c5;
+    padding : 10px;
+    max-height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.hugo {
+	color: dodgerblue;
+}
+
+.geoffrey {
+	color: #330066;
+}
+
+.quiterie {
+	color: #FF1FB4;
+}
+
+.literally {
+    width: 100%;   /* fill container width */
+    height: 200px;
+    border: 1px solid #c5c5c5;
+    margin-top: 15px;
+}
+
+svg {
+    max-width: 100%;
+    max-height: 200px;
+}
+
+.crop {
+    height: 105px;
+    overflow: hidden;
+}
+
+.crop img, img.cropped {
+    height: 150px;
+    margin: 0px 0 0 0;
+}
+
+img.nocropped {
+    height:auto; 
+    witdh: auto; 
+    max-width:100%;
+}
+
+#smileylist img, .messageRow .date { cursor: pointer; }

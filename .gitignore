@@ -1,0 +1,7 @@
+bower_components/
+build/
+db/
+node_modules/
+tastychat.pid
+webroot/img/bootstrap-colorpicker/
+webroot/img/literallycanvas/

@@ -1,0 +1,29 @@
+{
+  "name": "better-tasty-chat",
+  "description": "better tasty chat",
+  "main": "",
+  "license": "MIT",
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "js-cookie": "^2.1.0",
+    "jquery": "^2.2.0",
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.5.0",
+    "literallycanvas": "^0.4.13",
+    "mjolnic-bootstrap-colorpicker": "^2.3.0",
+    "jquery.countdown": "^2.1.0",
+    "jquery-play-sound": "https://github.com/admsev/jquery-play-sound.git",
+    "grunt": "^0.4.5"
+  }
+}
