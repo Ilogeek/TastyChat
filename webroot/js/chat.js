@@ -28,6 +28,27 @@ $(document).ready(function() {
 	var amitieListArea = secondSidebarArea.find("#amitie-list");
 	var smileyArea = firstSidebarArea.find("#smileyArea");
 
+	var userIsOnChat = false;
+
+	// ask for notifications if browser supports them
+	if (window.Notification && Notification.permission !== "granted") {
+	    Notification.requestPermission(function (status) {
+	      if (Notification.permission !== status) {
+	        Notification.permission = status;
+	      }
+	    });
+	}
+
+	// check if focused on the page or not
+	$(window)
+        .bind('focus', function(ev){
+            userIsOnChat = true;
+        })
+        .bind('blur', function(ev){
+            userIsOnChat = false;
+        })
+        .trigger('focus');
+
 	socket.on("connect", function() {
 		messageArea.html("");
 		if(Cookies.get("name") !== undefined && Cookies.get("name") !== 'null') {
@@ -152,6 +173,8 @@ $(document).ready(function() {
 		if(isScrolled) {
 			scrollMessageAreaToBottom();
 		}
+
+		sendNotification("Message privé de " + data.from, data.message);
 	});
 
 	socket.on('privateMessageSent', function(data) {
@@ -305,6 +328,12 @@ $(document).ready(function() {
 		date.appendTo(messageRow);
 		messageRow.appendTo(messageArea);
 
+		// if substring "@user" appears send notification
+		if(data.indexOf("@" + name) !== -1)
+		{
+			sendNotification(data.name + " vous a mentionné dans un message", data.message);
+		}
+
 		if(isScrolled) {
 			scrollMessageAreaToBottom();
 		}
@@ -442,6 +471,20 @@ $(document).ready(function() {
 		data = data.replace(/@u@/gi, '<i class="fa fa-tripadvisor fa-5x"></i>');
 		data = data.replace(/permis/gi, 'space rock opera');
 		data = data.replace(/ (\/r\/[^ ]+)/gi, ' <a href="https://www.reddit.com$1">$1</a>');
+		
 		return data;
 	}
+
+	function sendNotification(title, body)
+	{
+		if (window.Notification && Notification.permission === "granted" && !userIsOnChat) {
+			var options = {
+			  body: body,
+			}
+
+			var n = new Notification(title,options);
+			setTimeout(n.close.bind(n), 5000);
+		}
+	}
+
 });
